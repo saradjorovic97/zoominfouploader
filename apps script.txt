@@ -1,4 +1,4 @@
-const SPREADSHEET_ID = "1pNzCb7h4jN-rH3KnX8cj_2ZQpFlk5GPMvxnMvQJbCE4";
+const SPREADSHEET_ID = "whatever it is";
 const SHEET_NAME = "Main";
 
 function doPost(e) {
@@ -55,4 +55,5 @@ function doPost(e) {
        .setValues(values);
 
   return ContentService.createTextOutput("OK");
+
 }
