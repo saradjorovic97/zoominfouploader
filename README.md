@@ -13,7 +13,7 @@ There are **two scripts**:
 - Python 3.x
 - Install required packages: pip -m install pandas requests openpyxl
 ### 2. Excel File (via Power Query)
-- Set up an Excel sheet that auto-appends new ZoomInfo CSV files (Power Query is super easy to set up and works great for me so far, will see at the number of leads grows — refresh every 1/3/5/10 minutes).
+- Set up an Excel sheet that auto-appends new ZoomInfo CSV files (Power Query is super easy to set up and works great for me so far, will see at the number of leads grows -- refresh every 1/3/5/10 minutes).
 - Note: ZoomInfo downloads CSVs to your browser's default folder and at least for me there's no way to change this. If it downloads to the default folder it clashes with other downloads and causes errors. Use a dedicated browser/profile that downloads to a specific folder to avoid clashes -- plus it's easier to backup your CSVs that way.
 
 ### 3. Google Sheets + Apps Script
@@ -22,7 +22,7 @@ There are **two scripts**:
 - Execute as: Me
 - Access: Anyone (or Anyone with the link)
 - Set SHEET_NAME = "Main" in the Apps Script (or change it there).
-- Copy the deployment URL → paste into DEPLOYMENT_URL in both Python scripts.
+- Copy the deployment URL -> paste into DEPLOYMENT_URL in both Python scripts.
 - Set your Spreadsheet ID in the Apps Script.
 
 ### 4. Configure the Scripts
@@ -37,10 +37,10 @@ In both "initialuploader.py" and "mainuploader.py":
 python initialuploader.py
 2. After that, run the main uploader whenever the Excel updates:
 python mainuploader.py
-**WARNING**: Do NOT run initialuploader more than once — it'll create duplicates.
+**WARNING**: Do NOT run initialuploader more than once -- it'll create duplicates.
 
 ## Dependencies
 - Python libraries: pandas, requests, openpyxl
-- Google Apps Script (deployed as web app)
+- Google Apps Script (deployed as web app), just copy-paste the apps script txt file and tweak what's needed. If you change what columns are added it has to match both uploader scripts & it has to exist in the Excel sheet too. 
 
 If something breaks, check the console logs -- they're verbose on purpose.
