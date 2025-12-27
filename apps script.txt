@@ -1,0 +1,58 @@
+const SPREADSHEET_ID = "1pNzCb7h4jN-rH3KnX8cj_2ZQpFlk5GPMvxnMvQJbCE4";
+const SHEET_NAME = "Main";
+
+function doPost(e) {
+  if (!e || !e.postData || !e.postData.contents) {
+    return ContentService.createTextOutput("NO_POST_DATA");
+  }
+
+  const data = JSON.parse(e.postData.contents);
+
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  let sheet = ss.getSheetByName(SHEET_NAME);
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      "uploaded_by",
+      "uploaded_at",
+      "ZoomInfo Contact ID",
+      "First Name",
+      "Last Name",
+      "Email Address",
+      "Direct Phone Number",
+      "Mobile phone",
+      "Company Name",
+      "Website",
+      "Company HQ Phone",
+      "Company Country",
+      "Job Title"
+    ]);
+  }
+
+  const rows = data.rows || [];
+
+  if (rows.length === 0) {
+    return ContentService.createTextOutput("NO_ROWS");
+  }
+
+  const values = rows.map(r => [
+    r.uploaded_by || "",
+    r.uploaded_at || "",
+    r["ZoomInfo Contact ID"] || "",
+    r["First Name"] || "",
+    r["Last Name"] || "",
+    r["Email Address"] || "",
+    r["Direct Phone Number"] || "",
+    r["Mobile phone"] || "",
+    r["Company Name"] || "",
+    r["Website"] || "",
+    r["Company HQ Phone"] || "",
+    r["Company Country"] || "",
+    r["Job Title"] || ""
+  ]);
+
+  sheet.getRange(sheet.getLastRow() + 1, 1, values.length, values[0].length)
+       .setValues(values);
+
+  return ContentService.createTextOutput("OK");
+}
